@@ -1,0 +1,91 @@
+﻿<Window x:Class="lab10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab10"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="900" Loaded="MainWindow_OnLoaded">
+    
+    <Grid ShowGridLines="True" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions> 
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Grid.Row="0" x:Name="stackPanel" Background="LightGray">
+                <RadioButton Content="id" Checked="Button_OnChecked"
+                             FontSize="20" Foreground="Red" FontWeight="Bold"/>
+                <RadioButton Content="name" Checked="Button_OnChecked"
+                             Foreground="Red" FontWeight="Bold" FontSize="20"/>
+                <RadioButton Content="phone" Checked="Button_OnChecked"
+                             Foreground="Red" FontWeight="Bold" FontSize="20"/>
+            </StackPanel>
+            <Button Grid.Column="1" Grid.Row="0" Content="RowState" Click="rowState"
+                    FontSize="20" Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Rollback" Click="rollBack"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Insert" Click="DataGrid_RowInsert"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="DB merge" Click="dataBaseMerge"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Insert to child" Click="insertChild"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <!-- <TextBox Grid.Row="2" Grid.Column="1" Name="nameLike" FontSize="20"></TextBox> -->
+        </Grid>
+        
+        
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Grid.Row="2" Name="updateBox"
+                     Background="LightGray" FontSize="20"  Foreground="Crimson"
+                     TextAlignment="Center" ></TextBox>
+            <Button Grid.Column="1" Grid.Row="2" Content="Update LINQ" Click="updateLINQ"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Delete LINQ" Click="deleteLINQ"
+                    FontSize="20"  Foreground="Red" FontWeight="Bold" Background="LightGray"/>
+        </Grid>
+        
+        
+        
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="allDataGrid" CellEditEnding="DataGrid_OnCellEditEnding">
+            <!-- CellEditEnding="AllDataGrid_OnCellEditEnding"> -->
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DataGrid_RowDelete">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                  Name="SelectDataGrid" ItemsSource="{Binding}"/>
+        </Grid >
+</Window>
